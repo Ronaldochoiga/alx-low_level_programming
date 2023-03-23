@@ -1,7 +1,6 @@
 #include "main.h"
 
 /**
- *main - main function
  *positive_or_negative - checks positive or negative
  *@i: parameter of the function
  *Return: always 0
