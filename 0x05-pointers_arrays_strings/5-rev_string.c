@@ -1,14 +1,14 @@
 #include "main.h"
+
 /**
- *print_rev - main function
+ *rev_string - main function
  *
- *@s: function parameter
+ *@s: functional parameter
  *
  *Return: always 0
- *
- **/
+ */
 
-void print_rev(char *s)
+void rev_string(char *s)
 {
 	int i;
 	int count = 0;
