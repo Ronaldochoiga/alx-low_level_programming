@@ -3,7 +3,7 @@
 /**
  *rot13 - main function
  *
- *@s: function parameter
+ *@r: function parameter
  *
  *Return: always 0
  *
