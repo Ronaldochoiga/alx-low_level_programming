@@ -1,0 +1,21 @@
+#include "main.h"
+
+/**
+ *_isupper - checks whether upper case or lower case
+ *
+ *@c: functional parameter
+ *
+ *Return: always 0
+ *
+ **/
+
+int _isupper(int c)
+{
+	int i;
+
+	for (i = 0 ; c[i] <= 256 ; i++)
+		if (c[i] == 'A' && c[i] <= 'Z')
+			return (1);
+		else
+			return (0);
+}
