@@ -1,0 +1,23 @@
+#include "main.h"
+
+/**
+ *_pow_recursion - returns value after powering
+ *
+ *@x: functional parameter
+ *
+ *@y: functional parameter
+ *
+ *Return: always zero or the numer raised
+ **/
+
+int _pow_recursion(int x, int y)
+{
+	int r = x;
+
+	if (y < 0)
+		return (-1);
+	else if (y == 0)
+		return (1);
+	r *= _pow_recursion(x, y - 1);
+	return (r);
+}
