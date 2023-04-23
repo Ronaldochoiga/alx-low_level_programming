@@ -5,9 +5,9 @@ int _sqrt_recursion(int n);
 /**
  *find_sqrt - gives square root of a number
  *
- *@num: functional parameter
+ *@n: functional parameter
  *
- *@root: function parameter and the rooft to be tested
+ *@r: function parameter and the rooft to be tested
  *
  *Return: root or -1
  *
