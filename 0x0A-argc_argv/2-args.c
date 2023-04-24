@@ -15,19 +15,11 @@
 int main(int argc, char *argv[])
 
 {
-	int i = 0;
+	int j;
 
-	if (argc >= 0)
+	for (j = 0 ; j < argc ; j++)
 	{
-		for (i = 0 ; i <= argc ; i++)
-		{
-			printf("%s\n", argv[i]);
-			if (i == argc)
-			{
-				i++;
-				break;
-			}
-		}
+		printf("%s\n", argv[j]);
 	}
 	return (0);
 }
