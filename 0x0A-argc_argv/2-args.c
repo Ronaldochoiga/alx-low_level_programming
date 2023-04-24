@@ -29,5 +29,5 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-	return (i);
+	return (0);
 }
