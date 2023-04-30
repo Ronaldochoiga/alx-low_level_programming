@@ -1,0 +1,50 @@
+#include "variadic_functions.h"
+#include <stdarg.h>
+#include <stdio.h>
+
+/**
+ * print_all - pmain function that prints everything
+ * @format: parameter of arg passed
+ */
+void print_all(const char * const format, ...)
+{
+	int i = 0;
+	char *j, *k = "";
+
+	va_list l;
+
+	va_start(l, format);
+
+	if (format)
+	{
+		while (format[i])
+		{
+			switch (format[i])
+			{
+				case 'c':
+					printf("%s%c", k, va_arg(l, int));
+					break;
+				case 'i':
+					printf("%s%d", k, va_arg(l, int));
+					break;
+				case 'f':
+					printf("%s%f", k, va_arg(l, double));
+					break;
+				case 's':
+					j = va_arg(l, char *);
+					if (!j)
+						j = "(nil)";
+					printf("%s%s", k, j);
+					break;
+				default:
+					i++;
+					continue;
+			}
+			k = ", ";
+			i++;
+		}
+	}
+
+	printf("\n");
+	va_end(l);
+}
