@@ -1,0 +1,82 @@
+#include "hash_tables.h"
+
+/**
+ * hash_table_add - adds an element to the hash table
+ *
+ * @key: the key
+ * @nvalue: value associated with the key
+ *
+ * Return: the new_node or NULL if fails
+ */
+
+hash_node_t *hash_table_add(const char *key, char *nvalue)
+{
+  hash_node_t *nnode = NULL;
+
+  nnode = malloc(sizeof(hash_node_t));
+  if (!nnode)
+    {
+      free(nvalue);
+      return (NULL);
+    }
+
+  nnode->key = strdup(key);
+  nnode->value = nvalue;
+  if (!nnode->key || !nnode->value)
+    {
+      if (nnode->key)
+	free(nnode->key);
+      free(nvalue);
+      return (NULL);
+    }
+  return (nnode);
+}
+
+/**
+ * hash_table_set - sets an element to the hash table
+ *
+ * @ht: the hash table to add or update the key/value
+ * @key: the key
+ * @value: key value
+ *
+ * Return: 1 or 0 otherwise
+ */
+
+int hash_table_set(hash_table_t *ht, const char *key, const char *value)
+{
+  unsigned long int ind;
+  hash_node_t *nnode = NULL, *tnode = NULL;
+  char *nvalue = NULL;
+
+  if (!ht || !key || !value || strlen(key) == 0)
+    return (0);
+
+  ind = key_index((const unsigned char *)key, ht->size);
+  tnode = ht->array[ind];
+
+  nvalue = strdup(value);
+  if (!nvalue)
+    return (0);
+
+  while (tnode)
+    {
+      if (strcmp(tnode->key, key) == 0)
+	{
+	  free(tnode->value);
+	  tnode->value = nvalue;
+	  break;
+	}
+      tnode = tnode->next;
+    }
+
+  if (!tnode)
+    {
+      nnode = hash_table_add(key, nvalue);
+      if (!nnode)
+	return (0);
+      nnode->next = ht->array[ind];
+      ht->array[ind] = nnode;
+    }
+
+  return (1);
+}
