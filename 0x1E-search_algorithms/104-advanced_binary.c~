@@ -1,0 +1,47 @@
+#include "search_algos.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+/**
+ * advanced_recursive - searches for a value in a recursive manner
+ * @array: Pointer to the first element of the array to be searched
+ * @left: Index left of the middle
+ * @right: Index right of the middle
+ * @value: Value to search for in the array
+ * Return: index of value, -1 if not found
+ */
+int advanced_recursive(int *array, size_t left, size_t right, int value)
+{
+	size_t i = left;
+
+	if (right < left)
+		return (-1);
+	printf("Searching in array: ");
+	while (i < right)
+	{
+		printf("%d, ", array[i]);
+		i++;
+	}
+	printf("%d\n", array[i]);
+	i = left + (right - left) / 2;
+	if (array[i] == value && (i == left || array[i - 1] != value))
+		return (i);
+	if (array[i] >= value)
+		return (advanced_recursive(array, left, i, value));
+	return (advanced_recursive(array, i + 1, right, value));
+}
+
+/**
+ * advanced_binary - searches for a value in a sorted array
+ * @array: Pointer to the first elem
+ * @size: Number of elements in the array
+ * @value: Value to search for in the array
+ * Return: index of value, -1 if not found
+ */
+int advanced_binary(int *array, size_t size, int value)
+{
+	if (!array || size == 0)
+		return (-1);
+	return (advanced_recursive(array, 0, size - 1, value));
+}

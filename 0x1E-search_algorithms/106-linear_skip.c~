@@ -1,0 +1,37 @@
+#include "search_algos.h"
+
+/**
+ * linear_skip - searches using the linear skip mode
+ * @list: Pointer to the list to search in
+ * @value: Value to search in the array
+ * Return: -1, value location of index
+ */
+skiplist_t *linear_skip(skiplist_t *list, int value)
+{
+	skiplist_t *nde, *skip;
+
+	if (!list)
+		return (NULL);
+	for (nde = skip = list; skip->next && skip->n < value;)
+	{
+		nde = skip;
+		if (skip->express)
+		{
+			skip = skip->express;
+			printf("Value checked at index [%ld] = [%d]\n",
+			       skip->index, skip->n);
+		}
+		else
+		{
+			while (skip->next)
+				skip = skip->next;
+		}
+	}
+	printf("Value found between indexes [%ld] and [%ld]\n",
+	       nde->index, skip->index);
+	for (; nde->index < skip->index && nde->n < value; nde = nde->next)
+		printf("Value checked at index [%ld] = [%d]\n",
+		       nde->index, nde->n);
+	printf("Value checked at index [%ld] = [%d]\n", nde->index, nde->n);
+	return (nde->n == value ? nde : NULL);
+}

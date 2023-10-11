@@ -1,0 +1,41 @@
+#include "search_algos.h"
+#include <math.h>
+/**
+ * jump_list - Searches for an algorithm in a sorted singly
+ *             linked list in jump mode
+ * @list: A pointer to the first elemnt of the linked list
+ * @size: The number of nodes in the list.
+ * @value: The value to search for.
+ * Return: If the value is not present or the head of the list is NULL
+ **/
+
+listint_t *jump_list(listint_t *list, size_t size, int value)
+{
+	size_t stp, stp_size;
+	listint_t *nde, *jump;
+
+	if (list == NULL || size == 0)
+		return (NULL);
+
+	stp = 0;
+	stp_size = sqrt(size);
+	for (nde = jump = list; jump->index + 1 < size && jump->n < value;)
+	{
+		nde = jump;
+		for (stp += stp_size; jump->index < stp; jump = jump->next)
+		{
+			if (jump->index + 1 == size)
+				break;
+		}
+		printf("Value checked at index [%ld] = [%d]\n", jump->index, jump->n);
+	}
+
+	printf("Value found between indexes [%ld] and [%ld]\n",
+			nde->index, jump->index);
+
+	for (; nde->index < jump->index && nde->n < value; nde = nde->next)
+		printf("Value checked at index [%ld] = [%d]\n", nde->index, nde->n);
+	printf("Value checked at index [%ld] = [%d]\n", nde->index, nde->n);
+
+	return (nde->n == value ? nde : NULL);
+}
